@@ -7,34 +7,214 @@ import os
 
 os.system('cls')
 
-print('Разложим число на простые множители.')
+counter = 0 
+game_on = 0
 
-print()
+player_one_name = input('Введите имя первого игрока: ')
+player_two_name = input('Введите имя второго игрока: ')
 
-n = int(input('Введите число, которое нужно разложить на простые множители: '))
+one = ' '
+two = ' '
+three = ' '
+four = ' '
+five = ' '
+six = ' '
+seven = ' '
+eight = ' '
+nine = ' '
 
-def PrimeNumb(n) -> list:
+def print_board() -> str:
 
-    """Функция раскладывает число на простые множители, на входе принимает натуральное число N"""
+    'Функция рисует игровую доску'
+    
+    os.system('cls')
 
-    Result = []
+    print('\n' + one + ' | ' + two + ' | ' + three + '\n' + four + ' | ' + five + ' | ' + six + '\n' + seven + ' | ' + eight + ' | ' + nine)
+    print()
 
-    d = 2
-
-    while d * d <= n:
-
-        if n % d == 0:
-            Result.append(d)
-            n //= d
-
+def check_if_win() -> str:
+    
+    'Функция проверяте выиграл ли игрок'
+    
+    if one == two and two == three and one != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
+            exit()
+        
         else:
-            d += 1
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+  
+    elif four == five == six and four != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
+            exit()
+        
+        else:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+  
+    elif seven == eight == nine and seven != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
+            exit()
+            
+        else:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+  
+    elif one == four == seven and one != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
+            exit()
+        
+        else:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+  
+    elif two == five == eight and two != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+        
+        else:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+  
+    elif three == six == nine and three != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
+            exit()
+        
+        else:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit() 
+  
+    elif one == five == nine and one != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
+            exit()
+    
+        else:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+            
+    elif seven == five == three and seven != ' ':
+        
+        if counter%2 == 1:
+            print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
+            exit()
+        
+        else:
+            print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+            exit()
+  
+    elif counter == 9:
+      print('\nПобедила дружба!')
+      exit()
+  
+possible_inputs = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-    if n > 1:
-        Result.append(n)
+print('Давайте начнем. ' + player_one_name + ' начинает игру.')
 
-    return Result
+print_board()
 
-print()
+while game_on == 0: 
 
-print(f'Число {n} состоит из следующих простых множителей: {PrimeNumb(n)}.')
+  while counter%2 == 0:
+
+    move = input(player_one_name + ', выберите поле (от 1 до 9): ')
+
+    if move in possible_inputs:
+
+      counter += 1
+
+      possible_inputs.remove(move)
+
+      if move == '1':
+        one = 'X'
+
+      elif move == '2':
+        two = 'X'
+
+      elif move == '3':
+        three = 'X'
+
+      elif move == '4':
+        four = 'X'
+
+      elif move == '5':
+        five = 'X'
+
+      elif move == '6':
+        six = 'X'
+
+      elif move == '7':
+        seven = 'X'
+
+      elif move == '8':
+        eight = 'X'
+
+      elif move == '9':
+        nine = 'X'
+    
+      print_board()
+      check_if_win()
+      
+      continue
+    
+    else:
+      print('Извините, либо поле уже сыграло, либо Вы ввели неправильный номер\n')
+      continue
+
+  while counter%2 != 0:
+    
+    move = input(player_two_name + ', выберите поле: ')
+    
+    if move in possible_inputs:
+
+      counter += 1
+      possible_inputs.remove(move)
+
+      if move == '1':
+        one = 'O'
+
+      elif move == '2':
+        two = 'O'
+
+      elif move == '3':
+        three = 'O'
+
+      elif move == '4':
+        four = 'O'
+
+      elif move == '5':
+        five = 'O'
+
+      elif move == '6':
+        six = 'O'
+
+      elif move == '7':
+        seven = 'O'
+
+      elif move == '8':
+        eight = 'O'
+
+      elif move == '9':
+        nine = 'O'
+
+      print_board()
+
+      check_if_win()
+      continue
+    
+    else:
+      print('Извините, либо поле уже сыграло, либо Вы ввели неправильный номер\n')
+      continue
