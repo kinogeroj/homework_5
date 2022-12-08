@@ -12,16 +12,15 @@ os.system('cls')
 def input_dat(player_name) -> int:
     
     """Функция возвращает количество конфет, взятое игроком"""
-    
+ 
     x = int(input(f'{player_name}, введите количество конфет, которое Вы возьмете (от 1 до 28): '))
     
     while x < 1 or x > 28:
         x = int(input(f'{player_name}, введите корректное количество конфет: '))
-    
+
     os.system('cls')
-
+    
     return x
-
 
 def print_status (player_name, k, counter, value) -> str:
 
@@ -29,8 +28,8 @@ def print_status (player_name, k, counter, value) -> str:
 
     print(f'Ходил игрок {player_name}, взял {k} конфет, теперь у него {counter} конфет. На столе осталось {value} конфет.')
 
-player_one_name = input('Введите имя первого игрока: ')
-player_two_name = input('Введите имя второго игрока: ')
+player_one_name = input('Введите имя игрока: ')
+player_two_name = 'Bot'
 
 os.system('cls')
 
@@ -55,16 +54,18 @@ while value > 28:
         value -= k
         who_move = False
         print_status (player_one_name, k, counter1, value)
-    
+
     else:
-        k = input_dat(player_two_name)
+        os.system('cls')
+        k = randint(1,29)
         counter2 += k
         value -= k
         who_move = True
         print_status (player_two_name, k, counter2, value)
 
 if who_move:
+
     print('\nПоздравляем, ' + player_one_name + ', Вы выиграли!')
 
 else:
-    print('\nПоздравляем, ' + player_two_name + ', Вы выиграли!')
+    print('\n' + player_two_name + ' обыграл человека!')
